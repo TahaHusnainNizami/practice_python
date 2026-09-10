@@ -55,23 +55,53 @@
 # acc1.show_balance()  # Accessing public method to show balance
 
 # # super method --> use to access parent class methods/constructors in child class
-class car:
-    def __init__(self, type):
-        self.type = type
+# class car:
+#     def __init__(self, type):
+#         self.type = type
 
-    @staticmethod
-    def start():
-        print("Car is starting")
+#     @staticmethod
+#     def start():
+#         print("Car is starting")
 
-    @staticmethod
-    def stop():
-        print("Car is stopping")
+#     @staticmethod
+#     def stop():
+#         print("Car is stopping")
 
-class Toyota(car):
-    def __init__(self, name, type):
-        self.name = name
-        super().__init__(type)  # Calling the parent class constructor by super() method
+# class Toyota(car):
+#     def __init__(self, name, type):
+#         self.name = name
+#         super().__init__(type)  # Calling the parent class constructor by super() method
     
 
-c1 = Toyota('land cruiser', 'desiel engine' )
-print(c1.name, c1.type)
+# c1 = Toyota('land cruiser', 'desiel engine' )
+# print(c1.name, c1.type)
+
+
+# class decorator
+class Person:
+    name = 'anonymous'
+
+    @classmethod  
+    def new_name(cls, name):  # classmethod is used to define a method that is bound to the class and not the instance of the class. It takes the class itself as the first argument (cls) instead of the instance (self). This allows you to modify class-level attributes or call other class methods.
+        cls.name = name
+
+p1 = Person()
+p1.new_name('taha husnain')
+print(p1.name)  # Output: taha husnain
+
+#property decorator
+class Student:
+    def __init__(self, phy , chem, math):
+        self.phy = phy
+        self.chem = chem
+        self.math = math
+
+    @property # property decorator is used to define a method that can be accessed like an attribute. It allows you to create read-only attributes or computed properties without needing to call a method explicitly.
+    def percentage(self):
+        return f"{(self.phy + self.chem + self.math) / 3:.2f}%"
+
+std1 = Student(85,77,98)
+print(std1.percentage)  
+
+std1.chem = 67
+print(std1.percentage)  
